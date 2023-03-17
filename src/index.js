@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Item from './Item';
+import Footer from './footer';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,12 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>    
   <RouterProvider router={router} />  
+  <div className='footer-container'>
+    <Footer />
+  </div> 
   </React.StrictMode>
+
+  
 );
 
 

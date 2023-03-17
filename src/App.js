@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./App.css";
-
-
+import "./pagination.css";
+import "./general.css";
+import "./footer.css";
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -50,14 +51,14 @@ const App = () => {
       <ul className="pagination">
         {pageNumbers.map(number => (
           <li key={number} className={number === currentPage ? "active" : ""}>
-            <a href="#" onClick={() => handlePageChange(number)}>
+            <a href="#/" onClick={() => handlePageChange(number)}>
               {number}
             </a>
           </li>
         ))}
         {currentPage < totalPages &&
           <li>
-            <a href="#" onClick={handleForwardClick}>
+            <a href="#/" onClick={handleForwardClick}>
               &raquo;
             </a>
           </li>
@@ -67,31 +68,41 @@ const App = () => {
   }
 
   return (
-    <div className="main-container">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <ul className="product-list">
-              {users.map(user => (
-                <li key={user.id}>
-                  <div className="product-container">
-                    <Link to={'Item/' + user.id}><img src={user.thumbnail} alt={user.title}/></Link>
-                    <div className="product-details">
-                      <Link to={'Item/' + user.id}><div className="product-title">{user.title}</div></Link>
-                      <div className="product-price">${user.price}</div>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div className="pagination-container">
-              {renderPagination()}
+      <div className="every-product">
+        <ul>
+          <div className="products-e">
+            {users.map(user => (
+              <li className="products" key={user.id}>                
+            <div className="product-picture">
+              <Link to={'Item/' + user.id}><img src={user.thumbnail} alt={user.title}/></Link>
             </div>
+            <div className="product-details">
+              <Link to={'Item/' + user.id}><div className="product-title">{user.title}
+            </div></Link>
+            <div className="product-price">
+              ${user.price}
+            </div>
+            <div className="button-style">
+              <Link to={'Item/' + user.id}><button class="details-button">More Details</button></Link>
+              <button class="buy-button">Buy</button>
+            </div>
+            
+    
+            </div>            
+              </li>
+            ))}
           </div>
-        </div>
+        </ul>
+      <div className="pagination-container">
+        {renderPagination()}
       </div>
-    </div>
+      </div>
+  
+
   );
 };
+
+
+
 
 export default App;
